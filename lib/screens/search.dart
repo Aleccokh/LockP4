@@ -25,7 +25,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.background,
         centerTitle: true,
         iconTheme: const IconThemeData(
           color: Colors.white,
@@ -57,6 +57,8 @@ class _SearchPageState extends State<SearchPage> {
               ),
         ),
       ),
+
+      
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -78,8 +80,8 @@ class _SearchPageState extends State<SearchPage> {
                   onChanged: (value) {
                     state.appSearch();
                   },
-                  style: Theme.of(context).textTheme.subtitle1!.copyWith(
-                        color: Colors.white,
+                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        color: Colors.black,
                       ),
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -90,16 +92,18 @@ class _SearchPageState extends State<SearchPage> {
                     filled: true,
                     hintText: 'Search apps',
                     hintStyle: Theme.of(context).textTheme.subtitle1!.copyWith(
-                          color: Colors.white,
+                          color: Colors.black,
                         ),
                     prefixIcon: const Padding(
                       padding: EdgeInsets.all(12),
                       child: Icon(
                         Icons.search,
-                        color: Colors.white,
+                        color: Colors.black,
                       ),
                     ),
-                    border: InputBorder.none,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
                 ),
               );
@@ -126,7 +130,7 @@ class _SearchPageState extends State<SearchPage> {
                         ),
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(20),
                             border: Border.all(
                               color: Theme.of(context).primaryColorDark,
                             ),
@@ -144,7 +148,7 @@ class _SearchPageState extends State<SearchPage> {
                                 width: 50,
                                 decoration: BoxDecoration(
                                   // color: Theme.of(context).primaryColorDark,
-                                  borderRadius: BorderRadius.circular(10),
+                                  borderRadius: BorderRadius.circular(20),
                                   // ignore: prefer_const_literals_to_create_immutables
                                 ),
                                 child: Image.memory(
