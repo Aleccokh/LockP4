@@ -1,3 +1,4 @@
+import 'package:app_lock_flutter/models/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,39 +25,8 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        centerTitle: true,
-        iconTheme: const IconThemeData(
-          color: Colors.white,
-        ),
-        leading: Padding(
-          padding: const EdgeInsets.all(6.0),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Theme.of(context).primaryColorDark,
-              ),
-            ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.keyboard_arrow_left,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-          ),
-        ),
-        title: Text(
-          "Search App",
-          style: Theme.of(context).textTheme.bodyText1!.copyWith(
-                color: Colors.white,
-              ),
-        ),
-      ),
+      appBar: CustomAppBar(
+        title: "Search"),
 
       
       body: Column(
