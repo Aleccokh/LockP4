@@ -41,14 +41,11 @@ class PinCodeActivity(
 
     init {
         try{
-//            setContentView(R.layout.pin_activity)
-//            mPinLockView = findViewById(R.id.pin_lock_view)
-//            mIndicatorDots = findViewById(R.id.indicator_dots)
+
             mPinLockView!!.attachIndicatorDots(mIndicatorDots)
             mPinLockView!!.setPinLockListener(mPinLockListener)
             println("Pincode class Activated--2")
-//        mPinLockView.setCustomKeySet(new int[]{2, 3, 1, 5, 9, 6, 7, 0, 8, 4});
-//        mPinLockView.enableLayoutShuffling();
+
             mPinLockView!!.pinLength = 6
             mPinLockView!!.textColor = ContextCompat.getColor(context, R.color.ic_launcher_background)
             mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
@@ -58,84 +55,8 @@ class PinCodeActivity(
         }
     }
 
-//     override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-////        requestWindowFeature(Window.FEATURE_NO_TITLE)
-////        window.setFlags(
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN
-////        )
-//        println("Pincode class Activated")
-//        try{
-////            setContentView(R.layout.pin_activity)
-//            mPinLockView = findViewById(R.id.pin_lock_view)
-//            mIndicatorDots = findViewById(R.id.indicator_dots)
-//            mPinLockView!!.attachIndicatorDots(mIndicatorDots)
-//            mPinLockView!!.setPinLockListener(mPinLockListener)
-//            println("Pincode class Activated--2")
-////        mPinLockView.setCustomKeySet(new int[]{2, 3, 1, 5, 9, 6, 7, 0, 8, 4});
-////        mPinLockView.enableLayoutShuffling();
-//            mPinLockView!!.pinLength = 6
-//            mPinLockView!!.textColor = ContextCompat.getColor(this, R.color.white)
-//            mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
-//
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
-
-
-//    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-//        super.onCreate(savedInstanceState, persistentState)
-//        requestWindowFeature(Window.FEATURE_NO_TITLE)
-////        window.setFlags(
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN
-////        )
-//        println("Pincode class Activated")
-//        try{
-//            setContentView(R.layout.pin_activity)
-//            mPinLockView = findViewById(R.id.pin_lock_view)
-//            mIndicatorDots = findViewById(R.id.indicator_dots)
-//            mPinLockView!!.attachIndicatorDots(mIndicatorDots)
-//            mPinLockView!!.setPinLockListener(mPinLockListener)
-//            println("Pincode class Activated--2")
-////        mPinLockView.setCustomKeySet(new int[]{2, 3, 1, 5, 9, 6, 7, 0, 8, 4});
-////        mPinLockView.enableLayoutShuffling();
-//            mPinLockView!!.pinLength = 6
-//            mPinLockView!!.textColor = ContextCompat.getColor(this, R.color.white)
-//            mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
-//
-//        } catch (e: Exception) {
-//            e.printStackTrace()
-//        }
-//    }
 
     companion object {
         const val TAG = "PinLockView"
     }
 }
-//override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-//    super.onCreate(savedInstanceState, persistentState)
-//    requestWindowFeature(Window.FEATURE_NO_TITLE)
-////        window.setFlags(
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-////            WindowManager.LayoutParams.FLAG_FULLSCREEN
-////        )
-//    println("Pincode class Activated")
-//    try{
-//        setContentView(R.layout.pin_activity)
-//        mPinLockView = findViewById(R.id.pin_lock_view)
-//        mIndicatorDots = findViewById(R.id.indicator_dots)
-//        mPinLockView!!.attachIndicatorDots(mIndicatorDots)
-//        mPinLockView!!.setPinLockListener(mPinLockListener)
-////        mPinLockView.setCustomKeySet(new int[]{2, 3, 1, 5, 9, 6, 7, 0, 8, 4});
-////        mPinLockView.enableLayoutShuffling();
-//        mPinLockView!!.pinLength = 6
-//        mPinLockView!!.textColor = ContextCompat.getColor(this, R.color.white)
-//        mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
-//
-//    } catch (e: Exception) {
-//        e.printStackTrace()
-//    }
-//}
