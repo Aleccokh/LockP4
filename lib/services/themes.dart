@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-Color primaryColor = const Color(0xFFFFC107);
+Color primaryColor = Colors.purple.shade800;
 // Color secondaryColor = const Color(0xFF1F1F1F);
 // Color backgroundDark = const Color(0xff0A0A0A);
 Color secondaryColor = const Color(0xFF363944);
