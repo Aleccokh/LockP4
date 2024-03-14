@@ -107,7 +107,7 @@ class ConfirmationDialog extends StatelessWidget {
                                   border: Border.all(
                                     color: Theme.of(context).primaryColor,
                                   ),
-                                  borderRadius: BorderRadius.circular(5),
+                                  borderRadius: BorderRadius.circular(16),
                                 ),
                                 child: Center(
                                   child: Text(
@@ -116,7 +116,7 @@ class ConfirmationDialog extends StatelessWidget {
                                         : "Ok",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodyText2!
+                                        .bodyMedium!
                                         .copyWith(color: Colors.white),
                                   ),
                                 ),
@@ -136,14 +136,14 @@ class ConfirmationDialog extends StatelessWidget {
                                     border: Border.all(
                                       color: Theme.of(context).hintColor,
                                     ),
-                                    borderRadius: BorderRadius.circular(5),
+                                    borderRadius: BorderRadius.circular(16),
                                   ),
                                   child: Center(
                                     child: Text(
                                       button2Text ?? "Yes",
                                       style: Theme.of(context)
                                           .textTheme
-                                          .bodyText2!
+                                          .bodyMedium!
                                           .copyWith(color: Colors.black),
                                     ),
                                   ),

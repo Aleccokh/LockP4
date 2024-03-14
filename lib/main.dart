@@ -1,4 +1,5 @@
-import 'package:app_lock_flutter/screens/AppCard.dart';
+import 'package:app_lock_flutter/models/navigation.dart';
+import 'package:app_lock_flutter/screens/app_list.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lock_flutter/screens/splash.dart';
 import 'package:app_lock_flutter/services/init.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.dark,
-      home: const AppCard(),
+      home: HomeNavigator(),
     );
   }
 }
