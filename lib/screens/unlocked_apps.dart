@@ -9,8 +9,6 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
-import 'package:lottie/lottie.dart';
-import 'package:app_lock_flutter/screens/search.dart';
 import '../executables/controllers/apps_controller.dart';
 import '../services/constant.dart';
 import '../widgets/pass_confirm_dialog.dart';
@@ -21,7 +19,6 @@ class UnlockedAppScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     // ignore: deprecated_member_use
     return WillPopScope(
       onWillPop: () async {

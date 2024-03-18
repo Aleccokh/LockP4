@@ -105,6 +105,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  custom_pin_screen:
+    dependency: "direct main"
+    description:
+      name: custom_pin_screen
+      sha256: "5c5661c98b99fef1db557b272f77589cc7a46204c876022c7e891eb0f497782c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.5.0"
   device_apps:
     dependency: "direct main"
     description:

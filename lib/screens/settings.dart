@@ -1,6 +1,6 @@
 import 'package:app_lock_flutter/executables/controllers/method_channel_controller.dart';
 import 'package:app_lock_flutter/executables/controllers/password_controller.dart';
-import 'package:app_lock_flutter/screens/set_passcode.dart';
+import 'package:app_lock_flutter/screens/pin.dart';
 import 'package:app_lock_flutter/services/constant.dart';
 import 'package:app_lock_flutter/widgets/confirmation_dialog.dart';
 import 'package:app_lock_flutter/widgets/pass_confirm_dialog.dart';
@@ -36,7 +36,7 @@ class _SettingsPageState extends State<SettingsPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => const SetPasscode(),
+                              builder: (context) => const PinScreen(),
                             ),
                           );
                         }
@@ -45,7 +45,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const SetPasscode(),
+                          builder: (context) => const PinScreen(),
                         ),
                       );
                     }

@@ -1,6 +1,8 @@
 import 'dart:developer';
 
 import 'package:app_lock_flutter/main.dart';
+import 'package:app_lock_flutter/models/navigation.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,7 +19,7 @@ class PasswordController extends GetxController implements GetxService {
   setPasscode(int index) {
     if (index == 10 && passcode.length < 6) {
       passcode = "${passcode}0";
-    } else if (index == 11 && passcode.isNotEmpty) {
+    } else if (index == 9 && passcode.isNotEmpty) {
       List local = passcode.split("");
       local.removeLast();
       passcode = "";
@@ -25,7 +27,7 @@ class PasswordController extends GetxController implements GetxService {
         passcode = "$passcode$element";
       }
       log(passcode);
-    } else if (index < 11 && passcode.length < 6) {
+    } else if (index < 9 && passcode.length < 6) {
       passcode = "$passcode${index + 1}";
     }
     log("$passcode $index");
@@ -41,14 +43,20 @@ class PasswordController extends GetxController implements GetxService {
         passcode = "";
         update();
       } else {
-        Fluttertoast.showToast(msg: "Invalid Passcode");
+        Fluttertoast.showToast(msg: "Invalid Password");
       }
     } else {
       if (addedPassCode == passcode) {
         prefs.setString(AppConstants.setPassCode, passcode);
-        navigatorKey.currentState!.pop();
+        Fluttertoast.showToast(msg: "Password set successfully");
+        Navigator.pushReplacement(
+          navigatorKey.currentContext!,
+          MaterialPageRoute(
+            builder: (context) => HomeNavigator(),
+          ),
+        );
       } else {
-        Fluttertoast.showToast(msg: "passcode does not match");
+        Fluttertoast.showToast(msg: "Passwords does not match");
       }
     }
   }
