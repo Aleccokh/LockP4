@@ -8,27 +8,16 @@
     >
 
 
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="140dp"
-        android:background="#0A0A0A"
-        android:scaleType="center"
-        android:src="@mipmap/ic_launcher"/>
-
-
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/profile_image"
-        android:layout_marginTop="21dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="81dp"
         android:fontFamily="sans-serif-thin"
         android:gravity="center"
         android:maxLines="1"
-        android:text="AppLock"
+        android:text="Enter Password"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         tools:ignore="HardcodedText" />
@@ -66,11 +55,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:textSize="34sp"
-        app:keypadButtonSize="72dp"
+        android:translationY="200px"
         app:keypadButtonBackgroundDrawable="@drawable/shape"
+        app:keypadButtonSize="72dp"
         app:keypadShowDeleteButton="true"
         app:keypadTextColor="#FFFFFF"
-        app:keypadTextSize="18dp"
-        />
+        app:keypadTextSize="18dp" />
 
 </RelativeLayout>
