@@ -1,8 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
-
-void main() => runApp(MyApp());
+import 'package:app_lock_flutter/screens/settings.dart'; // Importer le fichier settings.dart
 
 class MyApp extends StatefulWidget {
   @override
@@ -53,9 +52,17 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('App Usage Example'),
-          backgroundColor: Colors.green,
+          title: const Text('App Usage'),
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back), // Utilisation d'une flèche de retour
+            onPressed: () {
+              // Retour à la page des paramètres (Settings)
+              Navigator.pop(context);
+            },
+          ),
         ),
+        backgroundColor: Theme.of(context).primaryColor, // Couleur de fond du Scaffold
         body: ListView.builder(
             itemCount: _infos.length,
             itemBuilder: (context, index) {
@@ -63,12 +70,12 @@ class _MyAppState extends State<MyApp> {
                   title: Text(_infos[index].appName),
                   trailing: Text(_infos[index].usage.toString()));
             }),
-        //floatingActionButton: FloatingActionButton(
-            //onPressed: () {
-              // Vous pouvez appeler manuellement la fonction ici si nécessaire
-              //getUsageStats();
-           // },
-           // child: Icon(Icons.file_download)),
+        floatingActionButton: FloatingActionButton(
+        onPressed: () {
+        // Vous pouvez appeler manuellement la fonction ici si nécessaire
+        getUsageStats();
+         },
+         child: Icon(Icons.file_download)),
       ),
     );
   }
