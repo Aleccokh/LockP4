@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:app_lock_flutter/main.dart';
 import 'package:app_lock_flutter/models/navigation.dart';
 import 'package:flutter/material.dart';
-// import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,12 +43,12 @@ class PasswordController extends GetxController implements GetxService {
         passcode = "";
         update();
       } else {
-        // Fluttertoast.showToast(msg: "Invalid Password");
+        Fluttertoast.showToast(msg: "Invalid Password");
       }
     } else {
       if (addedPassCode == passcode) {
         prefs.setString(AppConstants.setPassCode, passcode);
-        // Fluttertoast.showToast(msg: "Password set successfully");
+        Fluttertoast.showToast(msg: "Password set successfully");
         Navigator.pushReplacement(
           navigatorKey.currentContext!,
           MaterialPageRoute(
@@ -56,7 +56,7 @@ class PasswordController extends GetxController implements GetxService {
           ),
         );
       } else {
-        // Fluttertoast.showToast(msg: "Passwords does not match");
+        Fluttertoast.showToast(msg: "Passwords does not match");
       }
     }
   }
