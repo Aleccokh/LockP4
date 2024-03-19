@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "477613820387",
+    "project_id": "p4lock",
+    "storage_bucket": "p4lock.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:477613820387:android:178d620db5d3bede38f8d6",
+        "android_client_info": {
+          "package_name": "com.applockFlutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDC_qWkuX6MCMBq1olPFHf5Qk66yVGIGeU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

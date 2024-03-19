@@ -25,6 +25,7 @@ if (flutterVersionName == null) {
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+apply plugin: "com.google.gms.google-services"
 
 android {
     compileSdkVersion 33
@@ -76,6 +77,5 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
-
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
 }
