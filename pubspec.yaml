@@ -55,6 +55,8 @@ dependencies:
   file: ^6.1.4
   smooth_page_indicator: ^1.1.0
   custom_pin_screen: ^0.5.0
+  app_usage: ^3.0.1
+  fl_chart: ^0.66.2
   # google_mobile_ads: ^2.3.0
   # image_picker: ^0.8.5+3
 

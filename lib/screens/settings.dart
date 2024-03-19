@@ -1,3 +1,4 @@
+import 'package:app_lock_flutter/widgets/bar_chart_sample_1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_lock_flutter/screens/pin.dart';
@@ -82,7 +83,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyApp(),
+                      builder: (context) => BarChartSample1(),
                     ),
                   );
                 },

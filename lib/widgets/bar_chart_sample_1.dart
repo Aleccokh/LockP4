@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'dart:math';
+import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class BarChartSample1 extends StatefulWidget {
-  BarChartSample1({super.key});
+  BarChartSample1({
+    super.key,
+  });
 
   List<Color> get availableColors => const <Color>[
         Color(0xFFFF683B),
@@ -13,17 +16,20 @@ class BarChartSample1 extends StatefulWidget {
         Color(0xFFFF3AF2),
         Color(0xFFE80054),
         Color(0xFF50E4FF),
+        Color(0xFFFFC300),
       ];
 
   final Color barBackgroundColor = Colors.white.withOpacity(0.3); //.darken()
   final Color barColor = Colors.white;
-  final Color touchedBarColor = const Color(0xFF3BFF49);
+  final Color touchedBarColor = const Color(0xFFFFC300);
 
   @override
-  State<StatefulWidget> createState() => BarChartSample1State();
+  State<StatefulWidget> createState() {
+    return _BarChartSample1State();
+  }
 }
 
-class BarChartSample1State extends State<BarChartSample1> {
+class _BarChartSample1State extends State<BarChartSample1> {
   final Duration animDuration = const Duration(milliseconds: 250);
 
   int touchedIndex = -1;
@@ -42,23 +48,16 @@ class BarChartSample1State extends State<BarChartSample1> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 const Text(
-                  'Mingguan',
+                  'APP USAGE',
                   style: TextStyle(
-                    color: Color(0xFF3BFF49),
+                    color: Color(0xFFFF683B),
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
+                    decoration: TextDecoration.none,
                   ),
                 ),
                 const SizedBox(
                   height: 4,
-                ),
-                const Text(
-                  'Grafik konsumsi kalori',
-                  style: TextStyle(
-                    color: Color(0xFF3BFF49),
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
                 const SizedBox(
                   height: 38,
@@ -66,9 +65,12 @@ class BarChartSample1State extends State<BarChartSample1> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: BarChart(
-                      isPlaying ? randomData() : mainBarData(),
-                      swapAnimationDuration: animDuration,
+                    child: RotatedBox(
+                      quarterTurns: 1,
+                      child: BarChart(
+                        isPlaying ? randomData() : mainBarData(),
+                        swapAnimationDuration: animDuration,
+                      ),
                     ),
                   ),
                 ),
@@ -85,7 +87,7 @@ class BarChartSample1State extends State<BarChartSample1> {
               child: IconButton(
                 icon: Icon(
                   isPlaying ? Icons.pause : Icons.play_arrow,
-                  color: Color(0xFF3BFF49);,
+                  color: const Color(0xFFFFC300),
                 ),
                 onPressed: () {
                   setState(() {
@@ -120,7 +122,7 @@ class BarChartSample1State extends State<BarChartSample1> {
           color: isTouched ? widget.touchedBarColor : barColor,
           width: width,
           borderSide: isTouched
-              ? BorderSide(color: widget.touchedBarColor.darken(80))
+              ? const BorderSide(color: Colors.red)
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
@@ -254,6 +256,7 @@ class BarChartSample1State extends State<BarChartSample1> {
       color: Colors.white,
       fontWeight: FontWeight.bold,
       fontSize: 14,
+      decoration: TextDecoration.none,
     );
     Widget text;
     switch (value.toInt()) {
@@ -282,10 +285,13 @@ class BarChartSample1State extends State<BarChartSample1> {
         text = const Text('', style: style);
         break;
     }
-    return SideTitleWidget(
-      axisSide: meta.axisSide,
-      space: 16,
-      child: text,
+    return RotatedBox(
+      quarterTurns: -1,
+      child: SideTitleWidget(
+        axisSide: meta.axisSide,
+        space: 16,
+        child: text,
+      ),
     );
   }
 
