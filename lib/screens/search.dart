@@ -1,7 +1,7 @@
 import 'package:app_lock_flutter/models/app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/instance_manager.dart';
 import 'package:get/state_manager.dart';
 
@@ -186,8 +186,8 @@ class _SearchPageState extends State<SearchPage> {
                                                 .application!,
                                           );
                                         } else {
-                                          Fluttertoast.showToast(
-                                              msg: "Set password");
+                                          // Fluttertoast.showToast(
+                                              // msg: "Set password");
                                         }
                                       },
                                     ),

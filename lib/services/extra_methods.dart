@@ -2,7 +2,7 @@
 
 import 'dart:developer';
 
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -34,8 +34,8 @@ class ExtraMethods {
         headers: <String, String>{'my_header_key': 'my_header_value'},
       );
     } else {
-      Fluttertoast.showToast(msg: 'Invalid url {$url}');
-      log('Could not launch $url');
+      // Fluttertoast.showToast(msg: 'Invalid url {$url}');
+      // log('Could not launch $url');
     }
   }
 

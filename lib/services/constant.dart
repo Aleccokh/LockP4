@@ -1,6 +1,6 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -64,8 +64,8 @@ Future<void> launchInBrowser(String url) async {
       headers: <String, String>{'my_header_key': 'my_header_value'},
     );
   } else {
-    Fluttertoast.showToast(msg: 'Invalid url {$url}');
-    log('Could not launch $url');
+    // Fluttertoast.showToast(msg: 'Invalid url {$url}');
+    // log('Could not launch $url');
   }
 }
 

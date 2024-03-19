@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/state_manager.dart';
 import 'package:app_lock_flutter/executables/controllers/method_channel_controller.dart';
 
@@ -153,8 +153,8 @@ class AskPermissionBootomSheet extends StatelessWidget {
                             await state.checkNotificationPermission()) {
                           Navigator.pop(context);
                         } else {
-                          Fluttertoast.showToast(
-                              msg: "Required permissions not given !");
+                          // Fluttertoast.showToast(
+                          //     msg: "Required permissions not given !");
                         }
                       },
                       child: Text(

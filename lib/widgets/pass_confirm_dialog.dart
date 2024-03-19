@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/state_manager.dart';
 import 'package:app_lock_flutter/executables/controllers/apps_controller.dart';
 
@@ -71,14 +71,14 @@ class PasswordCorfirmDialog extends StatelessWidget {
                                 .subtitle1!
                                 .copyWith(color: Colors.white),
                             onChanged: (value) {
-                              Fluttertoast.cancel();
+                              // Fluttertoast.cancel();
                               if (value.length == 6 &&
                                   value == state.getPasscode()) {
                                 if (Navigator.canPop(context)) {
                                   Navigator.pop(context, true);
                                 }
                               } else if (value.length == 6) {
-                                Fluttertoast.showToast(msg: "Invalid password");
+                                // Fluttertoast.showToast(msg: "Invalid password");
                               }
                             },
                             keyboardType: TextInputType.phone,

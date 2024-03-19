@@ -2,7 +2,7 @@ import 'dart:developer';
 import 'dart:typed_data';
 import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:app_lock_flutter/executables/controllers/method_channel_controller.dart';
@@ -116,8 +116,8 @@ class AppsController extends GetxController implements GetxService {
             ),
           );
         } else {
-          Fluttertoast.showToast(
-              msg: "You can add only 16 apps in locked list");
+          // Fluttertoast.showToast(
+          //     msg: "You can add only 16 apps in locked list");
         }
       }
     } catch (e) {
@@ -160,8 +160,8 @@ class AppsController extends GetxController implements GetxService {
           log("ADD: $selectLockList", name: "addToLockedApps");
           Get.find<MethodChannelController>().addToLockedAppsMethod();
         } else {
-          Fluttertoast.showToast(
-              msg: "You can add only 16 apps in locked list");
+          // Fluttertoast.showToast(
+          //     msg: "You can add only 16 apps in locked list");
         }
       }
     } catch (e) {
