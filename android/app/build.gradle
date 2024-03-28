@@ -77,6 +77,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.2'
     implementation 'com.andrognito.pinlockview:pinlockview:2.1.0'
-    implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
-    implementation("com.google.firebase:firebase-analytics")
+    //implementation(platform("com.google.firebase:firebase-bom:32.7.4"))
+    //implementation("com.google.firebase:firebase-analytics")
 }

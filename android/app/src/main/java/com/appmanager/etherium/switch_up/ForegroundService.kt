@@ -101,28 +101,27 @@ class ForegroundService : Service() {
                 usageEvents.getNextEvent(event)
                 for (element in lockedAppList) if(event.packageName.toString().trim() == element.toString().trim()){
                     println("${event.className} $element ${event.eventType}-----------Event Type")
-                        if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED && currentAppActivityList.isEmpty())  {
+                    if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED && currentAppActivityList.isEmpty())  {
+                        currentAppActivityList.add(event.className)
+                        println("$currentAppActivityList-----List--added")
+                        window.txtView!!.visibility = View.INVISIBLE
+                        Handler(Looper.getMainLooper()).post {
+                            window.open()
+                        }
+                        return@breaking
+                    }else if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED){
+                        if(!currentAppActivityList.contains(event.className)){
                             currentAppActivityList.add(event.className)
                             println("$currentAppActivityList-----List--added")
-                            window.txtView!!.visibility = View.INVISIBLE
-                            Handler(Looper.getMainLooper()).post {
-                                window.open()
-                            }
-                            return@breaking
-                        }else if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED){
-                            if(!currentAppActivityList.contains(event.className)){
-                                currentAppActivityList.add(event.className)
-                                println("$currentAppActivityList-----List--added")
-                            }
-                        }else if(event.eventType == UsageEvents.Event.ACTIVITY_STOPPED ){
-                            if(currentAppActivityList.contains(event.className)){
-                                currentAppActivityList.remove(event.className)
-                                println("$currentAppActivityList-----List--remained")
-                            }
                         }
+                    }else if(event.eventType == UsageEvents.Event.ACTIVITY_STOPPED ){
+                        if(currentAppActivityList.contains(event.className)){
+                            currentAppActivityList.remove(event.className)
+                            println("$currentAppActivityList-----List--remained")
+                        }
+                    }
                 }
             }
         }
     }
 }
-

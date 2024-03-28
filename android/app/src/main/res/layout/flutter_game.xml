@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/flutter_game_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+   <!-- <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/view_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="8"
+            android:orientation="horizontal"
+            android:paddingTop="5dp"
+            android:paddingBottom="2.5dp"
+            >
+            &lt;!&ndash; New views will be added here at runtime &ndash;&gt;
+        </LinearLayout>
+        &lt;!&ndash;        android:weightSum="8"&ndash;&gt;
+        <LinearLayout
+            android:id="@+id/view_container1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="8"
+            android:paddingTop="2.5dp"
+            android:paddingBottom="5dp"
+            >
+            &lt;!&ndash; New views will be added here at runtime &ndash;&gt;
+        </LinearLayout>
+
+        &lt;!&ndash;        <LinearLayout&ndash;&gt;
+        &lt;!&ndash;            android:id="@+id/view_container2"&ndash;&gt;
+        &lt;!&ndash;            android:layout_width="match_parent"&ndash;&gt;
+        &lt;!&ndash;            android:layout_height="wrap_content"&ndash;&gt;
+        &lt;!&ndash;            android:orientation="horizontal"&ndash;&gt;
+        &lt;!&ndash;            android:weightSum="7"&ndash;&gt;
+        &lt;!&ndash;            android:paddingTop="2.5dp"&ndash;&gt;
+        &lt;!&ndash;            android:paddingBottom="5dp"&ndash;&gt;
+        &lt;!&ndash;            >&ndash;&gt;
+        &lt;!&ndash;            &lt;!&ndash; New views will be added here at runtime &ndash;&gt;&ndash;&gt;
+        &lt;!&ndash;        </LinearLayout>&ndash;&gt;
+
+
+    </LinearLayout>-->
+
+</RelativeLayout>
