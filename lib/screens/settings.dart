@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:app_lock_flutter/screens/pin.dart';
 import 'package:app_lock_flutter/widgets/confirmation_dialog.dart';
 import 'package:app_lock_flutter/widgets/pass_confirm_dialog.dart';
+import 'package:app_lock_flutter/widgets/calculator.dart';
 import 'package:app_lock_flutter/widgets/main_apptimer.dart';
 
 import '../executables/controllers/method_channel_controller.dart';
@@ -83,11 +84,23 @@ class _SettingsPageState extends State<SettingsPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => BarChartSample1(),
+                      builder: (context) => MyApp(),
                     ),
                   );
                 },
                 child: Text("App Usage"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  // Naviguer vers la page des temps des applications (MyApp)
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MathQuizPage(),
+                    ),
+                  );
+                },
+                child: Text("Calculator"),
               ),
             ],
           ),
