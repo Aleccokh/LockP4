@@ -1,4 +1,5 @@
 import 'package:app_lock_flutter/screens/home.dart';
+import 'package:app_lock_flutter/screens/search.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lock_flutter/services/init.dart';
 import 'package:app_lock_flutter/services/themes.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: CustomTheme.dark,
-      home: PermissionPage(),
+      home: SearchPage(),
     );
   }
 }
