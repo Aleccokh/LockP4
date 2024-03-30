@@ -7,7 +7,10 @@ import 'package:get/get.dart';
 
 class MaterialCardHolder extends StatefulWidget {
   var app;
-  MaterialCardHolder({Key? key, this.app}) : super(key: key);
+  bool search;
+  var state;
+  var index;
+  MaterialCardHolder({Key? key, required this.app, required this.search, this.state, this.index}) : super(key: key);
 
   @override
   State<MaterialCardHolder> createState() => _MaterialCardHolderState();
@@ -50,6 +53,26 @@ class _MaterialCardHolderState extends State<MaterialCardHolder> {
 
 
               //Switch
+              // widget.search?  
+              // GetBuilder<AppsController>(
+              //   builder: (appLockCtrl) {
+              //     return  Padding(
+              //       padding: const EdgeInsets.only(right: 8),
+              //       child: Switch(
+              //         value: widget.state.selectLockList.contains(widget.app.appName),
+              //         onChanged: (bool value) {
+              //           if ("${Get.find<AppsController>().getPasscode()}" !="") 
+              //           {
+              //             widget.state.addRemoveFromLockedAppsFromSearch(widget.app);
+              //           } else {
+              //             Fluttertoast.showToast(msg: "Please set a password first");
+              //           }
+              //         },
+              //       ),
+              //       );
+              //   },
+              //   )
+              //   :
               GetBuilder<AppsController>(
                 id: Get.find<AppsController>().addRemoveToUnlockUpdate,
                 builder: (appsController) {

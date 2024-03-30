@@ -24,7 +24,7 @@ class AppsController extends GetxController implements GetxService {
   List<String> selectLockList = [];
   bool addToAppsLoading = false;
 
-  List<String> excludedApps = ["com.android.settings"];
+  List<String> excludedApps = ["com.android.settings", "com.applockFlutter"];
 
   int appSearchUpdate = 1;
   int addRemoveToUnlockUpdate = 2;

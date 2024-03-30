@@ -40,7 +40,7 @@ class _SearchPageState extends State<SearchPage> {
             child: GetBuilder<AppsController>(builder: (state) {
               return Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(16),
                   border: Border.all(
                     color: Theme.of(context).primaryColorDark,
                   ),
@@ -51,7 +51,7 @@ class _SearchPageState extends State<SearchPage> {
                     state.appSearch();
                   },
                   style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                   decoration: InputDecoration(
                     contentPadding: const EdgeInsets.symmetric(
@@ -62,7 +62,7 @@ class _SearchPageState extends State<SearchPage> {
                     filled: true,
                     hintText: 'Search apps',
                     hintStyle: Theme.of(context).textTheme.subtitle1!.copyWith(
-                          color: Colors.black,
+                          color: Colors.white30,
                         ),
                     prefixIcon: const Padding(
                       padding: EdgeInsets.all(12),
@@ -72,13 +72,15 @@ class _SearchPageState extends State<SearchPage> {
                       ),
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                 ),
               );
             }),
           ),
+
+
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: MySeparator(
@@ -86,6 +88,8 @@ class _SearchPageState extends State<SearchPage> {
               dashWidthget: 3.0,
             ),
           ),
+
+          //Search List
           Expanded(
             child: GetBuilder<AppsController>(
                 id: Get.find<AppsController>().appSearchUpdate,
