@@ -1,102 +1,29 @@
 package com.applockFlutter
 
-import PinCodeActivity
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.PixelFormat
+import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.*
-import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentManager
-import com.andrognito.pinlockview.IndicatorDots
-import com.andrognito.pinlockview.PinLockListener
-import com.andrognito.pinlockview.PinLockView
+import androidx.appcompat.app.AppCompatActivity
 import io.flutter.embedding.android.FlutterFragment
-import io.flutter.embedding.android.FlutterFragmentActivity
-
 
 @SuppressLint("InflateParams")
-class Window(
-    private val context: Context
-) {
-    private val mView: View
-    var pinCode: String = ""
-    var txtView: TextView? = null
+class Window : AppCompatActivity() {
+    private var mView: View? = null
     private var mParams: WindowManager.LayoutParams? = null
-    private val mWindowManager: WindowManager
-    private val layoutInflater: LayoutInflater
+    private var mWindowManager: WindowManager? = null
 
+    private val TAG_FLUTTER_FRAGMENT = "flutter_fragment"
     private var flutterFragment: FlutterFragment? = null
 
-    private var mPinLockView: PinLockView? = null
-    private var mIndicatorDots: IndicatorDots? = null
-    private val mPinLockListener: PinLockListener = object : PinLockListener {
+    @SuppressLint("CommitTransaction")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
-        @SuppressLint("LogConditional")
-        override fun onComplete(pin: String) {
-            Log.d(PinCodeActivity.TAG, "Pin complete: $pin")
-            pinCode = pin
-            doneButton()
-        }
-
-        override fun onEmpty() {
-            Log.d(PinCodeActivity.TAG, "Pin empty")
-        }
-
-        @SuppressLint("LogConditional")
-        override fun onPinChange(pinLength: Int, intermediatePin: String) {}
-    }
-
-    fun open() {
-        try {
-            if (mView.windowToken == null) {
-                if (mView.parent == null) {
-                    mWindowManager.addView(mView, mParams)
-                }
-            }
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    fun isOpen():Boolean{
-        return (mView.windowToken != null && mView.parent != null)
-    }
-
-    fun close() {
-        try {
-            Handler(Looper.getMainLooper()).postDelayed({
-                (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
-                mView.invalidate()
-            },500)
-
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
-    }
-
-    fun doneButton(){
-        try {
-            mPinLockView!!.resetPinLockView()
-            val saveAppData: SharedPreferences = context.getSharedPreferences("save_app_data", Context.MODE_PRIVATE)
-            val dta: String = saveAppData.getString("password", "PASSWORD")!!
-            if(pinCode == dta){
-                println("$pinCode---------------pincode")
-                close()
-            }else{
-                txtView!!.visibility = View.VISIBLE
-            }
-        } catch (e: Exception) {
-            println("$e---------------doneButton")
-        }
-    }
-
-    init {
+        mWindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
         mParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -105,34 +32,51 @@ class Window(
             WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
             PixelFormat.TRANSLUCENT
         )
-        layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
-        //mView = layoutInflater.inflate(R.layout.pin_activity, null)
+        mParams!!.gravity = Gravity.CENTER
 
         mView = layoutInflater.inflate(R.layout.flutter_game, null)
 
-        mParams!!.gravity = Gravity.CENTER
-        mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        flutterFragment =
+            supportFragmentManager.findFragmentByTag(TAG_FLUTTER_FRAGMENT) as FlutterFragment?
 
+        if (flutterFragment == null) {
+            flutterFragment = FlutterFragment.createDefault()
+            supportFragmentManager.beginTransaction().add(
+                R.id.flutter_game_fragment, flutterFragment!!, TAG_FLUTTER_FRAGMENT
+            ).commit()
+        }
+    }
 
-        flutterFragment = FlutterFragment.createDefault()
+    fun open() {
+        try {
+            if (mView?.windowToken == null) {
+                if (mView?.parent == null) {
+                    windowManager.addView(mView, mParams)
+                }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-        // Add FlutterFragment to your window
-        val fragmentTransaction = (context as FlutterFragmentActivity).supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.flutter_game_fragment, flutterFragment!!)
-        fragmentTransaction.commit()
+    fun isOpen(): Boolean {
+        return (mView?.windowToken != null && mView?.parent != null)
+    }
 
-        mPinLockView = mView.findViewById(R.id.pin_lock_view)
-        mIndicatorDots = mView.findViewById(R.id.indicator_dots)
-        txtView = mView.findViewById(R.id.alertError) as TextView
+    fun close() {
+        try {
+            Handler(Looper.getMainLooper()).postDelayed({
+                (getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
+                mView?.invalidate()
+            }, 500)
 
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 
-
-        mPinLockView!!.attachIndicatorDots(mIndicatorDots)
-        mPinLockView!!.setPinLockListener(mPinLockListener)
-        mPinLockView!!.pinLength = 6
-        mPinLockView!!.textColor = ContextCompat.getColor(context, R.color.ic_launcher_background)
-        mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
+    fun doneButton() {
 
     }
 

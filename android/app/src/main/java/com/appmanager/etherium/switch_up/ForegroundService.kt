@@ -48,7 +48,7 @@ class ForegroundService : Service() {
     }
 
     private fun startMyOwnForeground() {
-        val window = Window(this)
+        val window = Window()
         mHomeWatcher.setOnHomePressedListener(object : HomeWatcher.OnHomePressedListener {
             override fun onHomePressed() {
                 println("onHomePressed")
@@ -104,7 +104,7 @@ class ForegroundService : Service() {
                     if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED && currentAppActivityList.isEmpty())  {
                         currentAppActivityList.add(event.className)
                         println("$currentAppActivityList-----List--added")
-                        window.txtView!!.visibility = View.INVISIBLE
+                        //  window.txtView!!.visibility = View.INVISIBLE
                         Handler(Looper.getMainLooper()).post {
                             window.open()
                         }
