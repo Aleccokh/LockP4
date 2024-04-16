@@ -20,7 +20,6 @@ class Window(
 ) {
     private val mView: View
     var result: String = ""
-    var txtView: TextView? = null
     private var mParams: WindowManager.LayoutParams? = null
     private val mWindowManager: WindowManager
     private val layoutInflater: LayoutInflater
@@ -29,25 +28,10 @@ class Window(
     private var mGameValidate: Button? = null
 
     private val mOnClickListener: OnClickListener = OnClickListener { view ->
-        result = (view as Button).text.toString()
+        result = (view as EditText).text.toString()
         Log.d(PinCodeActivity.TAG, "Pin complete: $result")
         doneButton()
     }
-
-    //   @SuppressLint("LogConditional")
-    //  override fun onComplete(pin: String) {
-    //    Log.d(PinCodeActivity.TAG, "Pin complete: $pin")
-    //    result = pin
-    //   doneButton()
-    //  }
-
-    //   override fun onEmpty() {
-    //     Log.d(PinCodeActivity.TAG, "Pin empty")
-    //  }
-
-    //   @SuppressLint("LogConditional")
-    //  override fun onPinChange(pinLength: Int, intermediatePin: String) {
-    //   }
 
     fun open() {
         try {
@@ -79,17 +63,12 @@ class Window(
 
     fun doneButton() {
         try {
-            //    mPinLockView!!.resetPinLockView()
             val saveAppData: SharedPreferences =
                 context.getSharedPreferences("save_app_data", Context.MODE_PRIVATE)
-            //   val dta: String = saveAppData.getString("password", "PASSWORD")!!
             if (result.toInt() == 8) {
                 println("$result---------------pincode")
                 close()
             }
-            //else {
-            // txtView!!.visibility = View.VISIBLE
-            //  }
         } catch (e: Exception) {
             println("$e---------------doneButton")
         }
@@ -114,13 +93,6 @@ class Window(
         mGameValidate = mView.findViewById(R.id.game_validate)
 
         mGameValidate!!.setOnClickListener(mOnClickListener)
-
-        // mPinLockView!!.attachIndicatorDots(mIndicatorDots)
-        // mPinLockView!!.setPinLockListener(mPinLockListener)
-        // mPinLockView!!.pinLength = 6
-        // mPinLockView!!.textColor = ContextCompat.getColor(context, R.color.ic_launcher_background)
-        // mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
-
     }
 
 }
