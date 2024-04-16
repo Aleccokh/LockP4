@@ -1,5 +1,6 @@
 package com.applockFlutter
 
+import Window
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
@@ -48,7 +49,7 @@ class ForegroundService : Service() {
     }
 
     private fun startMyOwnForeground() {
-        val window = Window()
+        val window = Window(this)
         mHomeWatcher.setOnHomePressedListener(object : HomeWatcher.OnHomePressedListener {
             override fun onHomePressed() {
                 println("onHomePressed")
@@ -104,7 +105,6 @@ class ForegroundService : Service() {
                     if(event.eventType == UsageEvents.Event.ACTIVITY_RESUMED && currentAppActivityList.isEmpty())  {
                         currentAppActivityList.add(event.className)
                         println("$currentAppActivityList-----List--added")
-                        //  window.txtView!!.visibility = View.INVISIBLE
                         Handler(Looper.getMainLooper()).post {
                             window.open()
                         }

@@ -1,58 +1,24 @@
-package com.applockFlutter
-
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.PixelFormat
-import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
+import com.applockFlutter.R
 import io.flutter.embedding.android.FlutterFragment
+import android.app.ActivityManager;
 
-@SuppressLint("InflateParams")
-class Window : AppCompatActivity() {
-    private var mView: View? = null
+class Window(private val context: Context) {
+    private val mView: View
     private var mParams: WindowManager.LayoutParams? = null
-    private var mWindowManager: WindowManager? = null
-
-    private val TAG_FLUTTER_FRAGMENT = "flutter_fragment"
-    private var flutterFragment: FlutterFragment? = null
-
-    @SuppressLint("CommitTransaction")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mWindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-
-        mParams = WindowManager.LayoutParams(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
-            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
-            PixelFormat.TRANSLUCENT
-        )
-
-        mParams!!.gravity = Gravity.CENTER
-
-        mView = layoutInflater.inflate(R.layout.flutter_game, null)
-
-        flutterFragment =
-            supportFragmentManager.findFragmentByTag(TAG_FLUTTER_FRAGMENT) as FlutterFragment?
-
-        if (flutterFragment == null) {
-            flutterFragment = FlutterFragment.createDefault()
-            supportFragmentManager.beginTransaction().add(
-                R.id.flutter_game_fragment, flutterFragment!!, TAG_FLUTTER_FRAGMENT
-            ).commit()
-        }
-    }
+    private val mWindowManager: WindowManager
+    private val layoutInflater: LayoutInflater
 
     fun open() {
         try {
-            if (mView?.windowToken == null) {
-                if (mView?.parent == null) {
-                    windowManager.addView(mView, mParams)
+            if (mView.windowToken == null) {
+                if (mView.parent == null) {
+                    mWindowManager.addView(mView, mParams)
                 }
             }
         } catch (e: Exception) {
@@ -61,16 +27,15 @@ class Window : AppCompatActivity() {
     }
 
     fun isOpen(): Boolean {
-        return (mView?.windowToken != null && mView?.parent != null)
+        return mView.windowToken != null && mView.parent != null
     }
 
     fun close() {
         try {
             Handler(Looper.getMainLooper()).postDelayed({
-                (getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
-                mView?.invalidate()
+                (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
+                mView.invalidate()
             }, 500)
-
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -80,4 +45,26 @@ class Window : AppCompatActivity() {
 
     }
 
+    init {
+        mParams = WindowManager.LayoutParams(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
+            WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
+            PixelFormat.TRANSLUCENT
+        )
+        layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        mView = layoutInflater.inflate(R.layout.pin_activity, null)
+
+        mParams!!.gravity = Gravity.CENTER
+        mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
+
+        val flutterFragment = FlutterFragment.createDefault()
+
+       // val fragmentManager = (context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).runningAppProcesses
+        //    .find { it.processName == service.packageName }?.importance
+
+        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.flutter_game_fragment, flutterFragment).commit()
+    }
 }

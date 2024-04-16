@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0A0A"
+    android:background="#FFF"
     tools:context=".NativeActivity"
     >
 
-        <FrameLayout android:id="@+id/flutter_game_fragment"
+      <FrameLayout android:id="@+id/flutter_game_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
