@@ -1,18 +1,53 @@
+package com.applockFlutter
+
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.SharedPreferences
 import android.graphics.PixelFormat
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.*
-import androidx.fragment.app.FragmentActivity
-import com.applockFlutter.R
-import io.flutter.embedding.android.FlutterFragment
-import android.app.ActivityManager;
+import android.view.View.OnClickListener
+import android.widget.Button
+import android.widget.EditText
+import android.widget.TextView
 
-class Window(private val context: Context) {
+
+@SuppressLint("InflateParams")
+class Window(
+    private val context: Context
+) {
     private val mView: View
+    var result: String = ""
+    var txtView: TextView? = null
     private var mParams: WindowManager.LayoutParams? = null
     private val mWindowManager: WindowManager
     private val layoutInflater: LayoutInflater
+
+    private var mGameResult: EditText? = null
+    private var mGameValidate: Button? = null
+
+    private val mOnClickListener: OnClickListener = OnClickListener { view ->
+        result = (view as Button).text.toString()
+        Log.d(PinCodeActivity.TAG, "Pin complete: $result")
+        doneButton()
+    }
+
+    //   @SuppressLint("LogConditional")
+    //  override fun onComplete(pin: String) {
+    //    Log.d(PinCodeActivity.TAG, "Pin complete: $pin")
+    //    result = pin
+    //   doneButton()
+    //  }
+
+    //   override fun onEmpty() {
+    //     Log.d(PinCodeActivity.TAG, "Pin empty")
+    //  }
+
+    //   @SuppressLint("LogConditional")
+    //  override fun onPinChange(pinLength: Int, intermediatePin: String) {
+    //   }
 
     fun open() {
         try {
@@ -27,7 +62,7 @@ class Window(private val context: Context) {
     }
 
     fun isOpen(): Boolean {
-        return mView.windowToken != null && mView.parent != null
+        return (mView.windowToken != null && mView.parent != null)
     }
 
     fun close() {
@@ -36,16 +71,32 @@ class Window(private val context: Context) {
                 (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
                 mView.invalidate()
             }, 500)
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
     fun doneButton() {
-
+        try {
+            //    mPinLockView!!.resetPinLockView()
+            val saveAppData: SharedPreferences =
+                context.getSharedPreferences("save_app_data", Context.MODE_PRIVATE)
+            //   val dta: String = saveAppData.getString("password", "PASSWORD")!!
+            if (result.toInt() == 8) {
+                println("$result---------------pincode")
+                close()
+            }
+            //else {
+            // txtView!!.visibility = View.VISIBLE
+            //  }
+        } catch (e: Exception) {
+            println("$e---------------doneButton")
+        }
     }
 
     init {
+
         mParams = WindowManager.LayoutParams(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.MATCH_PARENT,
@@ -54,17 +105,22 @@ class Window(private val context: Context) {
             PixelFormat.TRANSLUCENT
         )
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        mView = layoutInflater.inflate(R.layout.pin_activity, null)
+        mView = layoutInflater.inflate(R.layout.flutter_game, null)
 
         mParams!!.gravity = Gravity.CENTER
         mWindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
 
-        val flutterFragment = FlutterFragment.createDefault()
+        mGameResult = mView.findViewById(R.id.game_result)
+        mGameValidate = mView.findViewById(R.id.game_validate)
 
-       // val fragmentManager = (context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager).runningAppProcesses
-        //    .find { it.processName == service.packageName }?.importance
+        mGameValidate!!.setOnClickListener(mOnClickListener)
 
-        val transaction = (context as FragmentActivity).supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.flutter_game_fragment, flutterFragment).commit()
+        // mPinLockView!!.attachIndicatorDots(mIndicatorDots)
+        // mPinLockView!!.setPinLockListener(mPinLockListener)
+        // mPinLockView!!.pinLength = 6
+        // mPinLockView!!.textColor = ContextCompat.getColor(context, R.color.ic_launcher_background)
+        // mIndicatorDots!!.indicatorType = IndicatorDots.IndicatorType.FILL_WITH_ANIMATION
+
     }
+
 }
