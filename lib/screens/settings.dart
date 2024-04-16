@@ -102,6 +102,18 @@ class _SettingsPageState extends State<SettingsPage> {
                 },
                 child: Text("Calculator"),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  // Naviguer vers la page des temps des applications (MyApp)
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => BarChartSample1(),
+                    ),
+                  );
+                },
+                child: Text("Graph"),
+              ),
             ],
           ),
         ),
