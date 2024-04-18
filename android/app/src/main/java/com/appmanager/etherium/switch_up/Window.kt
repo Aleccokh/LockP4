@@ -2,16 +2,18 @@ package com.applockFlutter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.PixelFormat
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
-import android.view.*
-import android.view.View.OnClickListener
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.core.widget.doAfterTextChanged
+import kotlin.random.Random
 
 
 @SuppressLint("InflateParams")
@@ -19,21 +21,30 @@ class Window(
     private val context: Context
 ) {
     private val mView: View
-    var result: String = ""
+    private var result: String = ""
     private var mParams: WindowManager.LayoutParams? = null
     private val mWindowManager: WindowManager
     private val layoutInflater: LayoutInflater
 
     private var mGameResult: EditText? = null
     private var mGameValidate: Button? = null
+    private var mGameText: TextView? = null
 
-    private val mOnClickListener: OnClickListener = OnClickListener { view ->
-        result = (view as EditText).text.toString()
-        Log.d(PinCodeActivity.TAG, "Pin complete: $result")
-        doneButton()
-    }
+    private var number1 = 0
+    private var number2 = 0
+    private var operation = ' '
 
     fun open() {
+
+        mGameResult!!.error = null
+
+        number1 = Random.nextInt(0, 20)
+        number2 = Random.nextInt(0, 20)
+        operation = arrayOf('-', '+', 'x').random()
+
+        val newText = "$number1 $operation $number2 ="
+        mGameText!!.text = newText
+
         try {
             if (mView.windowToken == null) {
                 if (mView.parent == null) {
@@ -50,27 +61,37 @@ class Window(
     }
 
     fun close() {
+        mGameResult!!.text.clear()
+        mGameResult!!.clearFocus()
         try {
             Handler(Looper.getMainLooper()).postDelayed({
                 (context.getSystemService(Context.WINDOW_SERVICE) as WindowManager).removeView(mView)
                 mView.invalidate()
             }, 500)
-
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
-    fun doneButton() {
-        try {
-            val saveAppData: SharedPreferences =
-                context.getSharedPreferences("save_app_data", Context.MODE_PRIVATE)
-            if (result.toInt() == 8) {
-                println("$result---------------pincode")
-                close()
+    private fun doneButton() {
+        if (result == "") {
+            mGameResult!!.error = "Réponse vide"
+        } else {
+            try {
+                var answer = 0
+                when (operation) {
+                    '-' -> answer = number1 - number2
+                    '+' -> answer = number1 + number2
+                    'x' -> answer = number1 * number2
+                }
+                if (result.toInt() == answer) {
+                    close()
+                } else {
+                    mGameResult!!.error = "Mauvaise réponse"
+                }
+            } catch (e: Exception) {
+                mGameResult!!.error = "La réponse doit être un nombre"
             }
-        } catch (e: Exception) {
-            println("$e---------------doneButton")
         }
     }
 
@@ -83,6 +104,7 @@ class Window(
             WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
             PixelFormat.TRANSLUCENT
         )
+
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         mView = layoutInflater.inflate(R.layout.flutter_game, null)
 
@@ -91,8 +113,16 @@ class Window(
 
         mGameResult = mView.findViewById(R.id.game_result)
         mGameValidate = mView.findViewById(R.id.game_validate)
+        mGameText = mView.findViewById(R.id.game_text)
 
-        mGameValidate!!.setOnClickListener(mOnClickListener)
+        mGameResult!!.doAfterTextChanged {
+            result = mGameResult!!.text.toString()
+            mGameResult!!.error = null
+        }
+
+        mGameValidate!!.setOnClickListener {
+            doneButton()
+        }
     }
 
 }
