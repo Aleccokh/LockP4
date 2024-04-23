@@ -1,4 +1,3 @@
-import 'package:app_lock_flutter/widgets/bar_chart_sample_1.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:app_lock_flutter/screens/pin.dart';
@@ -101,18 +100,6 @@ class _SettingsPageState extends State<SettingsPage> {
                   );
                 },
                 child: Text("Calculator"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  // Naviguer vers la page des temps des applications (MyApp)
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => BarChartSample1(),
-                    ),
-                  );
-                },
-                child: Text("Graph"),
               ),
             ],
           ),
