@@ -37,11 +37,8 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin{
       ),
       
       body: Stack( children: [
-          SizedBox(height: 5,),
-          
-          Padding(
-            padding: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.08),
-            child: SizedBox(
+
+          SizedBox(
               child: GetBuilder<AppsController>(
                 builder: (appsController) {
                   if (appsController.unLockList.isEmpty) {
@@ -68,50 +65,6 @@ class _AppCardState extends State<AppCard> with SingleTickerProviderStateMixin{
                 },
               ),
             ),
-          ),
-
-
-          GetBuilder<AppsController>(builder: (state) {
-              return Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Theme.of(context).primaryColorDark,
-                  ),
-                ),
-                child: TextField(
-                  controller: state.searchApkText,
-                  onChanged: (value) {
-                    state.appSearch();
-                  },
-                  style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                        color: Colors.white,
-                      ),
-                  decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 14,
-                      vertical: 14,
-                    ),
-                    isCollapsed: true,
-                    filled: true,
-                    hintText: 'Search apps',
-                    hintStyle: Theme.of(context).textTheme.subtitle1!.copyWith(
-                          color: Colors.white30,
-                        ),
-                    prefixIcon: const Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Icon(
-                        Icons.search,
-                        color: Colors.black,
-                      ),
-                    ),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                ),
-              );
-            }),
 
           GetBuilder<AppsController>(
               id: Get.find<AppsController>().addRemoveToUnlockUpdate,
